@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 
 import ThemeContext from 'context/ThemeContext';
 
+import PrivateRoute from 'components/Route/PrivateRoute';
+import PublicRoute from 'components/Route/PublicRoute';
+
 import Layout from 'components/Layout/Layout';
 import HomeView from 'views/HomeView';
 import RegisterView from 'views/RegisterView';
@@ -24,10 +27,10 @@ class App extends Component {
             <ThemeContext>
                 <Layout>
                     <Switch>
-                        <Route path={paths.home} exact component={HomeView} />
-                        <Route path={paths.register} exact component={RegisterView} />
-                        <Route path={paths.login} exact component={LoginView} />
-                        <Route path={paths.contacts} exact component={ContactsView} />
+                        <PublicRoute path={paths.home} exact restricted={false} component={HomeView} />
+                        <PublicRoute path={paths.register} exact restricted={true} component={RegisterView} />
+                        <PublicRoute path={paths.login} exact restricted={true} component={LoginView} />
+                        <PrivateRoute path={paths.contacts} exact component={ContactsView} />
 
                         <Redirect to={paths.home} />
                     </Switch>
