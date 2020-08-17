@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { authSelectors } from 'redux/auth';
+import withAuth from 'hoc/withAuth';
 
 import { paths } from 'routes';
 
@@ -15,8 +14,4 @@ const PublicRoute = ({ component: Component, isAuthenticated, ...routeProp }) =>
     />
 );
 
-const mapStateToProps = state => ({
-    isAuthenticated: authSelectors.isAuthenticated(state),
-});
-
-export default connect(mapStateToProps)(PublicRoute);
+export default withAuth(PublicRoute);
