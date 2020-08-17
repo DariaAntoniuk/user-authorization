@@ -1,24 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { authSelectors } from 'redux/auth';
 
 import { paths } from 'routes';
 
 import { Styled } from './Navigation.styled';
 
-// TODO delete Register and Login
-
-const Navigation = () => {
-    const links = [
-        { url: paths.home, exact: true, label: 'Home' },
-        { url: paths.register, exact: true, label: 'Register' },
-        { url: paths.login, exact: true, label: 'Login' },
-        { url: paths.contacts, exact: true, label: 'Contacts' },
-    ].map(route => (
-        <Styled.NavLink key={route.url} to={route.url} exact={route.exact} activeClassName="active">
-            {route.label}
+const Navigation = ({ isAuthenticated }) => (
+    <nav>
+        <Styled.NavLink to={paths.home} exact activeClassName="active">
+            Home
         </Styled.NavLink>
-    ));
+        {isAuthenticated && (
+            <Styled.NavLink to={paths.contacts} exact activeClassName="active">
+                Contacts
+            </Styled.NavLink>
+        )}
+    </nav>
+);
 
-    return <nav>{links}</nav>;
-};
+const mapStateToProps = state => ({
+    isAuthenticated: authSelectors.isAuthenticated(state),
+});
 
-export default Navigation;
+export default connect(mapStateToProps)(Navigation);

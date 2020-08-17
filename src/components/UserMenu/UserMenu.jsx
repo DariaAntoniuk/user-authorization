@@ -6,25 +6,24 @@ import { authSelectors, authOperation } from 'redux/auth';
 
 import { Styled } from './UserMenu.style';
 
-const UserMenu = ({
-    avatar = 'https://dummyimage.com/640x480/2a2a2a/ffffff&text=Product+image+placeholder',
-    isLoading,
-    name,
-    onLogout,
-}) => (
+const UserMenu = ({ avatar, isLoading, name, onLogout }) => (
     <>
-        {isLoading && <Loader style={{ textAlign: 'right' }} />}
-        <Styled.Nav>
-            <Styled.Image src={avatar} alt="user image" />
-            <span>Welcome, {name}</span>
-            <button onClick={onLogout}>Logout</button>
-        </Styled.Nav>
+        {isLoading ? (
+            <Loader style={{ textAlign: 'right' }} />
+        ) : (
+            <Styled.Nav>
+                <Styled.Image src={avatar} alt="user image" />
+                <span>Welcome, {name}</span>
+                <button onClick={onLogout}>Logout</button>
+            </Styled.Nav>
+        )}
     </>
 );
 
 const mapStateToProps = state => ({
     isLoading: authSelectors.isLoading(state),
     name: authSelectors.getUserName(state),
+    avatar: 'https://dummyimage.com/640x480/2a2a2a/ffffff&text=Product+image+placeholder',
 });
 
 const mapDispatchToProps = {
