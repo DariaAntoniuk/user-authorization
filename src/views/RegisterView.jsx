@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Form from 'components/Form/Form';
 import FormField from 'components/FormField/FormField';
 import Button from 'components/Button/Button';
+
+import { authOperation } from 'redux/auth';
 
 class RegisterView extends Component {
     state = {
@@ -33,8 +36,14 @@ class RegisterView extends Component {
 
                 <Form onSubmit={this.handleSubmit}>
                     <FormField title="Name" name="name" value={name} onChange={this.handleChange} />
-                    <FormField title="Email" name="email" value={email} onChange={this.handleChange} />
-                    <FormField title="Password" name="password" value={password} onChange={this.handleChange} />
+                    <FormField type="email" title="Email" name="email" value={email} onChange={this.handleChange} />
+                    <FormField
+                        type="password"
+                        title="Password"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                    />
 
                     <Button title="Register" />
                 </Form>
@@ -43,4 +52,8 @@ class RegisterView extends Component {
     }
 }
 
-export default RegisterView;
+const mapDispatchToProps = {
+    onRegister: authOperation.register,
+};
+
+export default connect(null, mapDispatchToProps)(RegisterView);

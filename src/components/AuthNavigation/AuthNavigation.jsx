@@ -1,17 +1,13 @@
 import React from 'react';
 
+import { Styled } from 'components/Navigation/Navigation.styled';
+
 import { paths } from 'routes';
 
-import { Styled } from './Navigation.styled';
-
-// TODO delete Register and Login
-
-const Navigation = () => {
+const AuthNavigation = () => {
     const links = [
-        { url: paths.home, exact: true, label: 'Home' },
         { url: paths.register, exact: true, label: 'Register' },
         { url: paths.login, exact: true, label: 'Login' },
-        { url: paths.contacts, exact: true, label: 'Contacts' },
     ].map(route => (
         <Styled.NavLink key={route.url} to={route.url} exact={route.exact} activeClassName="active">
             {route.label}
@@ -21,4 +17,4 @@ const Navigation = () => {
     return <nav>{links}</nav>;
 };
 
-export default Navigation;
+export default AuthNavigation;

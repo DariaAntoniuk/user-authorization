@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Form from 'components/Form/Form';
 import FormField from 'components/FormField/FormField';
 import Button from 'components/Button/Button';
+
+import { authOperation } from 'redux/auth';
 
 class LoginView extends Component {
     state = {
@@ -30,8 +33,14 @@ class LoginView extends Component {
                 <h1 className="header">Login Page</h1>
 
                 <Form onSubmit={this.handleSubmit}>
-                    <FormField title="Email" name="email" value={email} onChange={this.handleChange} />
-                    <FormField title="Password" name="password" value={password} onChange={this.handleChange} />
+                    <FormField type="email" title="Email" name="email" value={email} onChange={this.handleChange} />
+                    <FormField
+                        type="password"
+                        title="Password"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                    />
 
                     <Button title="Login" />
                 </Form>
@@ -40,4 +49,8 @@ class LoginView extends Component {
     }
 }
 
-export default LoginView;
+const mapDispatchToProps = {
+    onLogin: authOperation.logIn,
+};
+
+export default connect(null, mapDispatchToProps)(LoginView);
