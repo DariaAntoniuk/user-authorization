@@ -2,33 +2,28 @@ import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 import { CSSTransition } from 'react-transition-group';
 
-// import ContactForm from 'components/ContactForm/ContactForm';
+import ContactForm from 'components/ContactForm/ContactForm';
 // import ContactFilter from 'components/ContactFilter/ContactFilter';
 // import ContactList from 'components/ContactList/ContactList';
-import Button from 'components/Button/Button';
+import ThemeButton from 'components/ThemeButton/ThemeButton';
 import Notification from 'components/Notification/Notification';
 
-import withTheme from 'hoc/withTheme';
-
-import { Styled } from './PhoneBook.styles';
-
-class PhoneBook extends Component {
+class ContactsView extends Component {
     componentDidMount() {
         // this.props.onFetchContacts();
     }
 
     render() {
-        const { isDark } = this.props.theme;
         // const { isContactsLength, isLoadingContacts, isError } = this.props;
         const { isContactsLength, isLoadingContacts, isError } = true;
 
         return (
-            <Styled.PhoneBook className={isDark ? 'dark' : ''}>
+            <div>
                 <CSSTransition in appear timeout={500} classNames="title-fade" unmountOnExit>
-                    <Styled.Title>Phonebook</Styled.Title>
+                    <h1 className="header">Phonebook</h1>
                 </CSSTransition>
 
-                {/*<ContactForm />*/}
+                <ContactForm />
                 {/*{isContactsLength > 1 && <ContactFilter />}*/}
 
                 {isLoadingContacts && <Loader type="ThreeDots" color="#E600AC" height={100} width={100} />}
@@ -36,10 +31,10 @@ class PhoneBook extends Component {
 
                 {/*{!!isContactsLength && !isError && <ContactList />}*/}
 
-                <Button />
-            </Styled.PhoneBook>
+                <ThemeButton />
+            </div>
         );
     }
 }
 
-export default withTheme(PhoneBook);
+export default ContactsView;

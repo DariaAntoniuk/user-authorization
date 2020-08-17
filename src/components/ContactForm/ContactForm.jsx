@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
+import Form from 'components/Form/Form';
 import FormField from 'components/FormField/FormField';
 import Alert from 'components/Alert/Alert';
-
-import { Styled } from './ContactForm.styles';
+import Button from 'components/Button/Button';
 
 class ContactForm extends Component {
     static propTypes = {
@@ -57,7 +57,7 @@ class ContactForm extends Component {
             number: '',
         });
 
-        onAddContact(name, number);
+        // onAddContact(name, number);
     };
 
     render() {
@@ -69,11 +69,11 @@ class ContactForm extends Component {
                     <Alert />
                 </CSSTransition>
 
-                <Styled.Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormField title="Name" name="name" value={name} onChange={this.handleInputChange} />
                     <FormField title="Number" name="number" value={number} onChange={this.handleInputChange} />
-                    <Styled.Button type="submit">Add contact</Styled.Button>
-                </Styled.Form>
+                    <Button title="Add contact" />
+                </Form>
             </>
         );
     }

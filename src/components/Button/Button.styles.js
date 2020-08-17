@@ -8,24 +8,15 @@ const Button = styled.button`
     outline: none;
     text-shadow: 0 0 1px #000;
     color: cornsilk;
-    background: brown;
-    opacity: 0.7;
+    width: 100%;
+    background-color: #4040bf;
     border: none;
     font-family: sans-serif;
     box-shadow: 0 2px 3px #808080;
-    margin-bottom: 20px;
 
     &:hover {
         cursor: pointer;
-        background: #ff66b3;
-    }
-
-    &.btn-dark {
-        box-shadow: 0 2px 3px #0d0d0d;
-    }
-
-    &.btn-dark:hover {
-        background: #800040;
+        background-color: #3939ac;
     }
 `;
 

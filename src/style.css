@@ -48,3 +48,9 @@
     transform: translateX(-100%);
     transition: all 250ms linear;
 }
+
+.header {
+    font-family: sans-serif;
+    color: #4040bf;
+    margin-bottom: 10px;
+}
