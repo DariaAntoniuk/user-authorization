@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 import Loader from 'components/Loader/Loader';
 import { authSelectors, authOperation } from 'redux/auth';
@@ -9,12 +10,14 @@ import { Styled } from './UserMenu.style';
 const UserMenu = ({ avatar, isLoading, name, onLogout }) => (
     <>
         {isLoading ? (
-            <Loader style={{ textAlign: 'right' }} />
+            <Loader align="right" />
         ) : (
             <Styled.Nav>
                 <Styled.Image src={avatar} alt="user image" />
-                <span>Welcome, {name}</span>
-                <button onClick={onLogout}>Logout</button>
+                <Styled.Span>Welcome, {name}</Styled.Span>
+                <Button onClick={onLogout} variant="outlined" color="primary" size="small">
+                    Logout
+                </Button>
             </Styled.Nav>
         )}
     </>

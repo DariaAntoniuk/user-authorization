@@ -18,8 +18,10 @@ import { authOperation } from 'redux/auth';
 import { paths } from 'routes';
 
 class App extends Component {
-    componentDidMount() {
-        this.props.onGetCurrentUser();
+    constructor(props) {
+        super(props);
+
+        props.onGetCurrentUser();
     }
 
     render() {

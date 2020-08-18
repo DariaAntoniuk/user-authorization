@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { connect } from 'react-redux';
+
+import { contactsSelectors } from 'redux/contacts';
 
 import ContactListItem from '../ContactListItem/ContactListItem';
 
@@ -19,11 +22,15 @@ const ContactList = ({ contacts }) => (
 ContactList.propTypes = {
     contacts: PropTypes.arrayOf(
         PropTypes.exact({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             number: PropTypes.string.isRequired,
         })
     ).isRequired,
 };
 
-export default ContactList;
+const mapStateToProps = state => ({
+    contacts: contactsSelectors.getVisibleContacts(state),
+});
+
+export default connect(mapStateToProps)(ContactList);

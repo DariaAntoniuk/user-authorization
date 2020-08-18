@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { contactsOperations } from 'redux/contacts';
 
 import { Styled } from './ContactListItem.styles';
 
@@ -85,4 +88,9 @@ class ContactListItem extends Component {
     }
 }
 
-export default ContactListItem;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onRemove: () => dispatch(contactsOperations.removeContact(ownProps.id)),
+    onUpdate: (name, number) => dispatch(contactsOperations.updateContact(ownProps.id, name, number)),
+});
+
+export default connect(null, mapDispatchToProps)(ContactListItem);

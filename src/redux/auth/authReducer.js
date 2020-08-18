@@ -17,7 +17,7 @@ const user = (state = initialUserState, action) => {
             return initialUserState;
 
         default:
-            return initialUserState;
+            return state;
     }
 };
 

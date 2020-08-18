@@ -4,6 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth';
+import { contactsReducer } from './contacts';
 
 const authPersistConfig = {
     key: 'auth',
@@ -13,6 +14,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
+    contacts: contactsReducer,
 });
 
 export const store = createStore(

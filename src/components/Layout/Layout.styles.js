@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Layout = styled.div`
     max-width: 1170px;
     height: 100vh;
+    margin: 0 auto;
     padding-left: 12px;
     padding-right: 12px;
 
@@ -16,7 +17,7 @@ const Layout = styled.div`
         }
     }
 
-    div {
+    & > div {
         width: 600px;
         margin: 0 auto;
     }

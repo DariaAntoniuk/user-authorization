@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { contactsSelectors, contactsAction } from 'redux/contacts';
 
 import FormField from 'components/FormField/FormField';
 
@@ -16,4 +19,12 @@ ContactFilter.propTypes = {
     onChangeFilter: PropTypes.func.isRequired,
 };
 
-export default ContactFilter;
+const mapStateToProps = state => ({
+    filter: contactsSelectors.getFilter(state),
+});
+
+const mapDispatchToProps = {
+    onChangeFilter: contactsAction.changeFilter,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactFilter);

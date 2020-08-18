@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import Loader from 'react-loader-spinner';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
+import { contactsSelectors, contactsOperations } from 'redux/contacts';
+
+import Loader from 'components/Loader/Loader';
 import ContactForm from 'components/ContactForm/ContactForm';
-// import ContactFilter from 'components/ContactFilter/ContactFilter';
-// import ContactList from 'components/ContactList/ContactList';
+import ContactFilter from 'components/ContactFilter/ContactFilter';
+import ContactList from 'components/ContactList/ContactList';
 import ThemeButton from 'components/ThemeButton/ThemeButton';
 import Notification from 'components/Notification/Notification';
 
 class ContactsView extends Component {
     componentDidMount() {
-        // this.props.onFetchContacts();
+        this.props.onFetchContacts();
     }
 
     render() {
-        // const { isContactsLength, isLoadingContacts, isError } = this.props;
-        const { isContactsLength, isLoadingContacts, isError } = true;
+        const { isContactsLength, isLoadingContacts, isError } = this.props;
 
         return (
             <div>
@@ -24,12 +26,12 @@ class ContactsView extends Component {
                 </CSSTransition>
 
                 <ContactForm />
-                {/*{isContactsLength > 1 && <ContactFilter />}*/}
+                {isContactsLength > 1 && <ContactFilter />}
 
-                {isLoadingContacts && <Loader type="ThreeDots" color="#E600AC" height={100} width={100} />}
+                {isLoadingContacts && <Loader align="center" />}
                 {isError && <Notification message={isError} />}
 
-                {/*{!!isContactsLength && !isError && <ContactList />}*/}
+                {!!isContactsLength && !isError && <ContactList />}
 
                 <ThemeButton />
             </div>
@@ -37,4 +39,14 @@ class ContactsView extends Component {
     }
 }
 
-export default ContactsView;
+const mapStateToProps = state => ({
+    isContactsLength: contactsSelectors.getContacts(state).length,
+    isLoadingContacts: contactsSelectors.getLoading(state),
+    isError: contactsSelectors.getError(state),
+});
+
+const mapDispatchToProps = {
+    onFetchContacts: contactsOperations.fetchContacts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsView);
