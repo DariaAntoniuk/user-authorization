@@ -1,8 +1,8 @@
 import actionTypes from './contactsActionTypes';
 
-const fetchContactsRequest = () => ({
+const FETCH_CONTACTS_REQUEST = {
     type: actionTypes.FETCH_REQUEST,
-});
+};
 const fetchContactsSuccess = data => ({
     type: actionTypes.FETCH_SUCCESS,
     payload: [...data],
@@ -12,9 +12,9 @@ const fetchContactsError = error => ({
     payload: error,
 });
 
-const addContactRequest = () => ({
+const ADD_CONTACT_REQUEST = {
     type: actionTypes.ADD_REQUEST,
-});
+};
 const addContactSuccess = contact => ({
     type: actionTypes.ADD_SUCCESS,
     payload: {
@@ -26,9 +26,9 @@ const addContactError = error => ({
     payload: error,
 });
 
-const removeContactRequest = () => ({
+const REMOVE_CONTACTS_REQUEST = {
     type: actionTypes.REMOVE_REQUEST,
-});
+};
 const removeContactSuccess = contactId => ({
     type: actionTypes.REMOVE_SUCCESS,
     payload: {
@@ -40,9 +40,9 @@ const removeContactError = error => ({
     payload: error,
 });
 
-const updateContactRequest = () => ({
+const UPDATE_CONTACT_REQUEST = {
     type: actionTypes.UPDATE_REQUEST,
-});
+};
 const updateContactSuccess = contact => ({
     type: actionTypes.UPDATE_SUCCESS,
     payload: {
@@ -60,16 +60,16 @@ const changeFilter = filter => ({
 });
 
 export default {
-    fetchContactsRequest,
+    FETCH_CONTACTS_REQUEST,
+    ADD_CONTACT_REQUEST,
+    REMOVE_CONTACTS_REQUEST,
+    UPDATE_CONTACT_REQUEST,
     fetchContactsSuccess,
     fetchContactsError,
-    addContactRequest,
     addContactSuccess,
     addContactError,
-    removeContactRequest,
     removeContactSuccess,
     removeContactError,
-    updateContactRequest,
     updateContactSuccess,
     updateContactError,
     changeFilter,

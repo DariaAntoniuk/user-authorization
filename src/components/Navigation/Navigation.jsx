@@ -7,13 +7,18 @@ import { paths } from 'routes';
 
 import { Styled } from './Navigation.styled';
 
+const linkProps = {
+    exact: true,
+    activeClassName: 'active',
+};
+
 const Navigation = ({ isAuthenticated }) => (
     <nav>
-        <Styled.NavLink to={paths.home} exact activeClassName="active">
+        <Styled.NavLink to={paths.home} {...linkProps}>
             Home
         </Styled.NavLink>
         {isAuthenticated && (
-            <Styled.NavLink to={paths.contacts} exact activeClassName="active">
+            <Styled.NavLink to={paths.contacts} {...linkProps}>
                 Contacts
             </Styled.NavLink>
         )}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import contactsAction from './contactsAction';
 
 const fetchContacts = () => dispatch => {
-    dispatch(contactsAction.fetchContactsRequest());
+    dispatch(contactsAction.FETCH_CONTACTS_REQUEST);
 
     axios
         .get('/contacts')
@@ -12,7 +12,7 @@ const fetchContacts = () => dispatch => {
 };
 
 const addContact = (name, number) => dispatch => {
-    dispatch(contactsAction.addContactRequest());
+    dispatch(contactsAction.ADD_CONTACT_REQUEST);
 
     axios
         .post('/contacts', { name, number })
@@ -21,7 +21,7 @@ const addContact = (name, number) => dispatch => {
 };
 
 const removeContact = contactId => dispatch => {
-    dispatch(contactsAction.removeContactRequest());
+    dispatch(contactsAction.REMOVE_CONTACTS_REQUEST);
 
     axios
         .delete(`/contacts/${contactId}`)
@@ -30,7 +30,7 @@ const removeContact = contactId => dispatch => {
 };
 
 const updateContact = (id, name, number) => dispatch => {
-    dispatch(contactsAction.updateContactRequest());
+    dispatch(contactsAction.UPDATE_CONTACT_REQUEST);
 
     axios
         .patch(`/contacts/${id}`, { name, number })

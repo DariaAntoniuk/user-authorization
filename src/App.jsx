@@ -30,8 +30,8 @@ class App extends Component {
                 <Layout>
                     <Switch>
                         <PublicRoute path={paths.home} exact restricted={false} component={HomeView} />
-                        <PublicRoute path={paths.register} exact restricted={true} component={RegisterView} />
-                        <PublicRoute path={paths.login} exact restricted={true} component={LoginView} />
+                        <PublicRoute path={paths.register} exact restricted component={RegisterView} />
+                        <PublicRoute path={paths.login} exact restricted component={LoginView} />
                         <PrivateRoute path={paths.contacts} exact component={ContactsView} />
 
                         <Redirect to={paths.home} />

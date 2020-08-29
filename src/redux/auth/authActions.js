@@ -1,8 +1,8 @@
 import authTypes from './authActionsTypes';
 
-const registerUserRequest = () => ({
+const REGISTER_USER_REQUEST = {
     type: authTypes.REGISTER_REQUEST,
-});
+};
 const registerUserSuccess = user => ({
     type: authTypes.REGISTER_SUCCESS,
     payload: { ...user },
@@ -12,9 +12,9 @@ const registerUserError = error => ({
     payload: error,
 });
 
-const logInRequest = () => ({
+const LOG_IN_REQUEST = {
     type: authTypes.LOGIN_REQUEST,
-});
+};
 const logInSuccess = auth => ({
     type: authTypes.LOGIN_SUCCESS,
     payload: {
@@ -26,20 +26,20 @@ const logInError = error => ({
     payload: error,
 });
 
-const logOutRequest = () => ({
+const LOG_OUT_REQUEST = {
     type: authTypes.LOGOUT_REQUEST,
-});
-const logOutSuccess = () => ({
+};
+const LOG_OUT_SUCCESS = {
     type: authTypes.LOGOUT_SUCCESS,
-});
+};
 const logOutError = error => ({
     type: authTypes.LOGOUT_ERROR,
     payload: error,
 });
 
-const getCurrentUserRequest = () => ({
+const GET_CURRENT_USER_REQUEST = {
     type: authTypes.CURRENT_REQUEST,
-});
+};
 const getCurrentUserSuccess = user => ({
     type: authTypes.CURRENT_SUCCESS,
     payload: {
@@ -52,16 +52,16 @@ const getCurrentUserError = error => ({
 });
 
 export default {
-    registerUserRequest,
+    REGISTER_USER_REQUEST,
+    GET_CURRENT_USER_REQUEST,
+    LOG_IN_REQUEST,
+    LOG_OUT_REQUEST,
+    LOG_OUT_SUCCESS,
     registerUserSuccess,
     registerUserError,
-    logInRequest,
     logInSuccess,
     logInError,
-    logOutRequest,
-    logOutSuccess,
     logOutError,
-    getCurrentUserRequest,
     getCurrentUserSuccess,
     getCurrentUserError,
 };

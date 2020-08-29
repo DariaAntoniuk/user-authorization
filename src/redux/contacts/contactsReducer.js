@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 
 import actionTypes from './contactsActionTypes';
+import authActionsTypes from 'redux/auth/authActionsTypes';
 
 const items = (state = [], action) => {
     switch (action.type) {
+        case authActionsTypes.LOGOUT_SUCCESS:
+            return [];
+
         case actionTypes.FETCH_SUCCESS:
             return action.payload;
 

@@ -2,8 +2,6 @@ import axios from 'axios';
 
 import { authActions } from 'redux/auth';
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
-
 const token = {
     set(token) {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -14,7 +12,7 @@ const token = {
 };
 
 const register = credentials => dispatch => {
-    dispatch(authActions.registerUserRequest());
+    dispatch(authActions.REGISTER_USER_REQUEST);
 
     axios
         .post('/users/signup', credentials)
@@ -26,7 +24,7 @@ const register = credentials => dispatch => {
 };
 
 const logIn = credentials => dispatch => {
-    dispatch(authActions.logInRequest());
+    dispatch(authActions.LOG_IN_REQUEST);
 
     axios
         .post('/users/login', credentials)
@@ -38,13 +36,13 @@ const logIn = credentials => dispatch => {
 };
 
 const logOut = () => dispatch => {
-    dispatch(authActions.logOutRequest());
+    dispatch(authActions.LOG_OUT_REQUEST);
 
     axios
         .post('/users/logout')
-        .then(response => {
+        .then(() => {
             token.unset();
-            dispatch(authActions.logOutSuccess(response.data));
+            dispatch(authActions.LOG_OUT_SUCCESS);
         })
         .catch(error => dispatch(authActions.logOutError(error.message)));
 };
@@ -55,11 +53,11 @@ const getCurrentUser = () => (dispatch, getState) => {
     } = getState();
 
     if (!persistedToken) {
-        return;
+        return null;
     }
 
     token.set(persistedToken);
-    dispatch(authActions.getCurrentUserRequest());
+    dispatch(authActions.GET_CURRENT_USER_REQUEST);
 
     axios
         .get('/users/current')
